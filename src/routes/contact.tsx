@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell, PageHero } from "@/components/site-chrome";
 import gateway from "@/assets/gateway.webp.asset.json";
+import heroPic from "@/assets/pic_145532.jpg.asset.json";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -20,7 +21,7 @@ function Contact() {
   const [sent, setSent] = useState(false);
   return (
     <PageShell>
-      <PageHero eyebrow="Contact" title="We would love to host you." image={gateway.url} />
+      <PageHero eyebrow="Contact" title="We would love to host you." image={heroPic.url} />
 
       <section className="py-24">
         <div className="container-luxe grid lg:grid-cols-12 gap-16">

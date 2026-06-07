@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site-chrome";
 import pool from "@/assets/pool.webp.asset.json";
+import heroPic from "@/assets/pic_145310.jpg.asset.json";
 
 export const Route = createFileRoute("/amenities")({
   head: () => ({
