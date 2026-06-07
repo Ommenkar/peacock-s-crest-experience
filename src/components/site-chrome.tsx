@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import logo from "@/assets/logo.jpg.asset.json";
+import heroVideo from "@/assets/hero.mp4.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -15,14 +16,23 @@ const nav = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => { if (videoRef.current) videoRef.current.playbackRate = 0.5; }, []);
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/60">
-      <div className="container-luxe flex items-center justify-between h-20">
+    <header className="fixed top-0 inset-x-0 z-50 border-b border-gold/20 overflow-hidden">
+      <video
+        ref={videoRef}
+        src={heroVideo.url}
+        autoPlay muted loop playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-primary/75 backdrop-blur-[2px]" />
+      <div className="relative container-luxe flex items-center justify-between h-20 text-primary-foreground">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo.url} alt="Peacock's Crest Resort" className="h-11 w-11 rounded-full object-cover ring-1 ring-gold/40" />
           <div className="leading-tight">
             <div className="font-display text-lg tracking-wide">Peacock's Crest</div>
-            <div className="text-[10px] tracking-[0.32em] text-muted-foreground uppercase">Resort · Satara</div>
+            <div className="text-[10px] tracking-[0.32em] text-gold-soft uppercase">Resort · Satara</div>
           </div>
         </Link>
         <nav className="hidden lg:flex items-center gap-8">
@@ -30,7 +40,7 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className="text-xs tracking-[0.22em] uppercase text-foreground/80 hover:text-gold transition-colors"
+              className="text-xs tracking-[0.22em] uppercase text-primary-foreground/85 hover:text-gold transition-colors"
               activeProps={{ className: "text-gold" }}
               activeOptions={{ exact: true }}
             >
@@ -40,7 +50,7 @@ export function SiteHeader() {
         </nav>
         <a
           href="tel:+919673185571"
-          className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-xs tracking-[0.22em] uppercase border border-gold text-foreground hover:bg-gold hover:text-primary transition-colors"
+          className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-xs tracking-[0.22em] uppercase border border-gold text-primary-foreground hover:bg-gold hover:text-primary transition-colors"
         >
           Book Now
         </a>
@@ -50,15 +60,15 @@ export function SiteHeader() {
           className="lg:hidden p-2"
         >
           <div className="space-y-1.5">
-            <span className="block w-6 h-px bg-foreground" />
-            <span className="block w-6 h-px bg-foreground" />
-            <span className="block w-4 h-px bg-foreground ml-auto" />
+            <span className="block w-6 h-px bg-primary-foreground" />
+            <span className="block w-6 h-px bg-primary-foreground" />
+            <span className="block w-4 h-px bg-primary-foreground ml-auto" />
           </div>
         </button>
       </div>
       {open && (
-        <div className="lg:hidden border-t border-border bg-background">
-          <nav className="container-luxe py-6 flex flex-col gap-5">
+        <div className="lg:hidden relative border-t border-gold/20 bg-primary/95 backdrop-blur-md">
+          <nav className="container-luxe py-6 flex flex-col gap-5 text-primary-foreground">
             {nav.map((n) => (
               <Link
                 key={n.to}
@@ -70,7 +80,7 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
-            <a href="tel:+919673185571" className="mt-2 inline-flex justify-center px-5 py-3 text-xs tracking-[0.22em] uppercase border border-gold text-foreground">
+            <a href="tel:+919673185571" className="mt-2 inline-flex justify-center px-5 py-3 text-xs tracking-[0.22em] uppercase border border-gold text-primary-foreground">
               Book Now · +91 96 7318 5571
             </a>
           </nav>
