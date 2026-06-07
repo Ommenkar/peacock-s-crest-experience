@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site-chrome";
 import wedding from "@/assets/wedding.webp.asset.json";
 import lawn from "@/assets/lawn.webp.asset.json";
+import heroPic from "@/assets/pic_145159.jpg.asset.json";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/events")({
 function Events() {
   return (
     <PageShell>
-      <PageHero eyebrow="Weddings & Celebrations" title="A canvas for once-in-a-lifetime moments." image={wedding.url} />
+      <PageHero eyebrow="Weddings & Celebrations" title="A canvas for once-in-a-lifetime moments." image={heroPic.url} />
       <section className="py-24">
         <div className="container-luxe grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">

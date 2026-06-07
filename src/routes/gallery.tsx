@@ -9,6 +9,7 @@ import lakeside from "@/assets/lakeside.webp.asset.json";
 import lawn from "@/assets/lawn.webp.asset.json";
 import lunch from "@/assets/lunch.mp4.asset.json";
 import hero from "@/assets/hero.mp4.asset.json";
+import heroPic from "@/assets/pic_145434.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -39,7 +40,7 @@ const items: Item[] = [
 function Gallery() {
   return (
     <PageShell>
-      <PageHero eyebrow="Gallery" title="Glimpses of Peacock's Crest." image={lakeside.url} />
+      <PageHero eyebrow="Gallery" title="Glimpses of Peacock's Crest." image={heroPic.url} />
       <section className="py-24">
         <div className="container-luxe">
           <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[260px] gap-3">

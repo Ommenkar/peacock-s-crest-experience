@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import { PageShell } from "@/components/site-chrome";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import gateway from "@/assets/gateway.webp.asset.json";
@@ -28,11 +29,14 @@ const features = [
 ] as const;
 
 function Home() {
+  const vRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => { if (vRef.current) vRef.current.playbackRate = 0.5; }, []);
   return (
     <PageShell>
       {/* Hero */}
       <section className="relative -mt-20 h-screen min-h-[640px] overflow-hidden">
         <video
+          ref={vRef}
           src={heroVideo.url}
           autoPlay
           muted

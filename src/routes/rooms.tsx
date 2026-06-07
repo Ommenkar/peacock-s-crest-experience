@@ -3,6 +3,7 @@ import { PageShell, PageHero } from "@/components/site-chrome";
 import room from "@/assets/room.webp.asset.json";
 import lakeside from "@/assets/lakeside.webp.asset.json";
 import gateway from "@/assets/gateway.webp.asset.json";
+import heroPic from "@/assets/pic_145032.jpg.asset.json";
 
 export const Route = createFileRoute("/rooms")({
   head: () => ({
@@ -41,7 +42,7 @@ const rooms = [
 function Rooms() {
   return (
     <PageShell>
-      <PageHero eyebrow="Rooms & Cottages" title="Restful interiors. Open horizons." image={room.url} />
+      <PageHero eyebrow="Rooms & Cottages" title="Restful interiors. Open horizons." image={heroPic.url} />
       <section className="py-24">
         <div className="container-luxe space-y-24">
           {rooms.map((r, i) => (
