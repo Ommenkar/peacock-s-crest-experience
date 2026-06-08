@@ -1,23 +1,18 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { PageShell, PageHero } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import wedding from "@/assets/wedding.webp.asset.json";
 import lawn from "@/assets/lawn.webp.asset.json";
 import heroPic from "@/assets/pic_145159.jpg.asset.json";
 
-export const Route = createFileRoute("/events")({
-  head: () => ({
-    meta: [
-      { title: "Weddings & Events — Peacock's Crest Resort" },
-      { name: "description", content: "A destination wedding venue near Satara — sweeping lawns, grand stages and timeless settings." },
-      { property: "og:title", content: "Weddings & Events · Peacock's Crest" },
-      { property: "og:description", content: "Destination weddings, family functions and celebrations at Peacock's Crest." },
-      { property: "og:image", content: wedding.url },
-    ],
-  }),
-  component: Events,
-});
-
-function Events() {
+export default function Events() {
+  usePageMeta({
+    title: "Weddings & Events — Peacock's Crest Resort",
+    description: "A destination wedding venue near Satara — sweeping lawns, grand stages and timeless settings.",
+    ogTitle: "Weddings & Events · Peacock's Crest",
+    ogDescription: "Destination weddings, family functions and celebrations at Peacock's Crest.",
+    ogImage: wedding.url,
+  });
   return (
     <PageShell>
       <PageHero eyebrow="Weddings & Celebrations" title="A canvas for once-in-a-lifetime moments." image={heroPic.url} />

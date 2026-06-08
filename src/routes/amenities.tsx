@@ -1,20 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import pool from "@/assets/pool.webp.asset.json";
 import heroPic from "@/assets/pic_145310.jpg.asset.json";
-
-export const Route = createFileRoute("/amenities")({
-  head: () => ({
-    meta: [
-      { title: "Amenities — Peacock's Crest Resort" },
-      { name: "description", content: "Pool, scenic lawns, parking, Wi-Fi and thoughtful comforts at Peacock's Crest." },
-      { property: "og:title", content: "Amenities · Peacock's Crest" },
-      { property: "og:description", content: "Pool, lawns, parking, Wi-Fi and thoughtful comforts." },
-      { property: "og:image", content: pool.url },
-    ],
-  }),
-  component: Amenities,
-});
 
 const amenities = [
   { t: "Swimming Pool", d: "An open-air pool framed by gardens — for lazy afternoons and joyful evenings." },
@@ -27,7 +14,14 @@ const amenities = [
   { t: "Hospitality", d: "A team that treats every guest as a dear visitor in our home." },
 ];
 
-function Amenities() {
+export default function Amenities() {
+  usePageMeta({
+    title: "Amenities — Peacock's Crest Resort",
+    description: "Pool, scenic lawns, parking, Wi-Fi and thoughtful comforts at Peacock's Crest.",
+    ogTitle: "Amenities · Peacock's Crest",
+    ogDescription: "Pool, lawns, parking, Wi-Fi and thoughtful comforts.",
+    ogImage: pool.url,
+  });
   return (
     <PageShell>
       <PageHero eyebrow="Resort Amenities" title="Considered comforts, quiet luxuries." image={heroPic.url} />

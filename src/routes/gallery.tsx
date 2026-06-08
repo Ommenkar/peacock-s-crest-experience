@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import gateway from "@/assets/gateway.webp.asset.json";
 import pool from "@/assets/pool.webp.asset.json";
 import room from "@/assets/room.webp.asset.json";
@@ -10,19 +10,6 @@ import lawn from "@/assets/lawn.webp.asset.json";
 import lunch from "@/assets/lunch.mp4.asset.json";
 import hero from "@/assets/hero.mp4.asset.json";
 import heroPic from "@/assets/pic_145434.jpg.asset.json";
-
-export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Gallery — Peacock's Crest Resort" },
-      { name: "description", content: "Step inside Peacock's Crest — rooms, dining, events and scenic views." },
-      { property: "og:title", content: "Gallery · Peacock's Crest" },
-      { property: "og:description", content: "Rooms, dining, events and scenic views." },
-      { property: "og:image", content: lakeside.url },
-    ],
-  }),
-  component: Gallery,
-});
 
 type Item = { src: string; alt: string; video?: boolean; span?: string };
 const items: Item[] = [
@@ -37,7 +24,14 @@ const items: Item[] = [
   { src: lunch.url, alt: "Dining moments", video: true },
 ];
 
-function Gallery() {
+export default function Gallery() {
+  usePageMeta({
+    title: "Gallery — Peacock's Crest Resort",
+    description: "Step inside Peacock's Crest — rooms, dining, events and scenic views.",
+    ogTitle: "Gallery · Peacock's Crest",
+    ogDescription: "Rooms, dining, events and scenic views.",
+    ogImage: lakeside.url,
+  });
   return (
     <PageShell>
       <PageHero eyebrow="Gallery" title="Glimpses of Peacock's Crest." image={heroPic.url} />

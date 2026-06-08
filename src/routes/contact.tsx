@@ -1,23 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell, PageHero } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import gateway from "@/assets/gateway.webp.asset.json";
 import heroPic from "@/assets/pic_145532.jpg.asset.json";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Peacock's Crest Resort, Satara" },
-      { name: "description", content: "Reach Peacock's Crest Resort. Call, WhatsApp or send an enquiry." },
-      { property: "og:title", content: "Contact · Peacock's Crest" },
-      { property: "og:description", content: "Reach us by phone, WhatsApp or enquiry form." },
-      { property: "og:image", content: gateway.url },
-    ],
-  }),
-  component: Contact,
-});
-
-function Contact() {
+export default function Contact() {
+  usePageMeta({
+    title: "Contact — Peacock's Crest Resort, Satara",
+    description: "Reach Peacock's Crest Resort. Call, WhatsApp or send an enquiry.",
+    ogTitle: "Contact · Peacock's Crest",
+    ogDescription: "Reach us by phone, WhatsApp or enquiry form.",
+    ogImage: gateway.url,
+  });
   const [sent, setSent] = useState(false);
   return (
     <PageShell>
