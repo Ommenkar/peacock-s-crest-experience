@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import logo from "@/assets/logo.jpg.asset.json";
 import heroVideo from "@/assets/hero.mp4.asset.json";
@@ -37,15 +37,16 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden lg:flex items-center gap-8">
           {nav.map((n) => (
-            <Link
+            <NavLink
               key={n.to}
               to={n.to}
-              className="text-xs tracking-[0.22em] uppercase text-primary-foreground/85 hover:text-gold transition-colors"
-              activeProps={{ className: "text-gold" }}
-              activeOptions={{ exact: true }}
+              end={n.to === "/"}
+              className={({ isActive }) =>
+                `text-xs tracking-[0.22em] uppercase transition-colors ${isActive ? "text-gold" : "text-primary-foreground/85 hover:text-gold"}`
+              }
             >
               {n.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
         <a
@@ -70,15 +71,17 @@ export function SiteHeader() {
         <div className="lg:hidden relative border-t border-gold/20 bg-primary/95 backdrop-blur-md">
           <nav className="container-luxe py-6 flex flex-col gap-5 text-primary-foreground">
             {nav.map((n) => (
-              <Link
+              <NavLink
                 key={n.to}
                 to={n.to}
+                end={n.to === "/"}
                 onClick={() => setOpen(false)}
-                className="text-xs tracking-[0.22em] uppercase"
-                activeProps={{ className: "text-gold" }}
+                className={({ isActive }) =>
+                  `text-xs tracking-[0.22em] uppercase ${isActive ? "text-gold" : ""}`
+                }
               >
                 {n.label}
-              </Link>
+              </NavLink>
             ))}
             <a href="tel:+919673185571" className="mt-2 inline-flex justify-center px-5 py-3 text-xs tracking-[0.22em] uppercase border border-gold text-primary-foreground">
               Book Now · +91 96 7318 5571

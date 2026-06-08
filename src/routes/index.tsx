@@ -1,25 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { PageShell } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import gateway from "@/assets/gateway.webp.asset.json";
 import room from "@/assets/room.webp.asset.json";
 import dining from "@/assets/dining.webp.asset.json";
 import wedding from "@/assets/wedding.webp.asset.json";
 import lakeside from "@/assets/lakeside.webp.asset.json";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Peacock's Crest Resort, Satara — A Gateway to Peace" },
-      { name: "description", content: "Welcome to Peacock's Crest Resort. A peaceful luxury getaway near Kanher Dam, Satara." },
-      { property: "og:title", content: "Peacock's Crest Resort, Satara" },
-      { property: "og:description", content: "A peaceful luxury getaway near Kanher Dam, Satara." },
-      { property: "og:image", content: gateway.url },
-    ],
-  }),
-  component: Home,
-});
 
 const features = [
   { label: "Rooms & Cottages", to: "/rooms", img: room.url },
@@ -28,13 +16,20 @@ const features = [
   { label: "Scenic Views", to: "/gallery", img: lakeside.url },
 ] as const;
 
-function Home() {
+export default function Home() {
+  usePageMeta({
+    title: "Peacock's Crest Resort, Satara — A Gateway to Peace",
+    description: "Welcome to Peacock's Crest Resort. A peaceful luxury getaway near Kanher Dam, Satara.",
+    ogTitle: "Peacock's Crest Resort, Satara",
+    ogDescription: "A peaceful luxury getaway near Kanher Dam, Satara.",
+    ogImage: gateway.url,
+  });
   const vRef = useRef<HTMLVideoElement>(null);
   useEffect(() => { if (vRef.current) vRef.current.playbackRate = 0.5; }, []);
   return (
     <PageShell>
       {/* Hero */}
-      <section className="relative -mt-20 h-screen min-h-[640px] overflow-hidden">
+      <section className="relative -mt-20 h-screen min-h[640px] overflow-hidden">
         <video
           ref={vRef}
           src={heroVideo.url}
