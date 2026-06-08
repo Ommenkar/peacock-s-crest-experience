@@ -1,22 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import room from "@/assets/room.webp.asset.json";
 import lakeside from "@/assets/lakeside.webp.asset.json";
 import gateway from "@/assets/gateway.webp.asset.json";
 import heroPic from "@/assets/pic_145032.jpg.asset.json";
-
-export const Route = createFileRoute("/rooms")({
-  head: () => ({
-    meta: [
-      { title: "Rooms & Cottages — Peacock's Crest Resort" },
-      { name: "description", content: "Elegant rooms and lakeside cottages designed for rest, privacy and natural beauty." },
-      { property: "og:title", content: "Rooms & Cottages · Peacock's Crest" },
-      { property: "og:description", content: "Elegant rooms and lakeside cottages at Peacock's Crest Resort." },
-      { property: "og:image", content: room.url },
-    ],
-  }),
-  component: Rooms,
-});
 
 const rooms = [
   {
@@ -39,7 +26,14 @@ const rooms = [
   },
 ];
 
-function Rooms() {
+export default function Rooms() {
+  usePageMeta({
+    title: "Rooms & Cottages — Peacock's Crest Resort",
+    description: "Elegant rooms and lakeside cottages designed for rest, privacy and natural beauty.",
+    ogTitle: "Rooms & Cottages · Peacock's Crest",
+    ogDescription: "Elegant rooms and lakeside cottages at Peacock's Crest Resort.",
+    ogImage: room.url,
+  });
   return (
     <PageShell>
       <PageHero eyebrow="Rooms & Cottages" title="Restful interiors. Open horizons." image={heroPic.url} />

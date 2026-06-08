@@ -1,23 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site-chrome";
+import { usePageMeta } from "@/lib/page-meta";
 import gateway from "@/assets/gateway.webp.asset.json";
 import lawn from "@/assets/lawn.webp.asset.json";
 import heroPic from "@/assets/pic_144944.jpg.asset.json";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Peacock's Crest Resort, Satara" },
-      { name: "description", content: "The story of Peacock's Crest Resort — a serene escape near Kanher Dam, Satara." },
-      { property: "og:title", content: "About · Peacock's Crest Resort" },
-      { property: "og:description", content: "A serene escape near Kanher Dam, Satara." },
-      { property: "og:image", content: gateway.url },
-    ],
-  }),
-  component: About,
-});
-
-function About() {
+export default function About() {
+  usePageMeta({
+    title: "About — Peacock's Crest Resort, Satara",
+    description: "The story of Peacock's Crest Resort — a serene escape near Kanher Dam, Satara.",
+    ogTitle: "About · Peacock's Crest Resort",
+    ogDescription: "A serene escape near Kanher Dam, Satara.",
+    ogImage: gateway.url,
+  });
   return (
     <PageShell>
       <PageHero eyebrow="Our Story" title="A quiet pursuit of beauty." image={heroPic.url} />
