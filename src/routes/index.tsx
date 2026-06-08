@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <PageShell>
       {/* Hero */}
-      <section className="relative -mt-20 h-screen min-h[640px] overflow-hidden">
+      <section className="relative -mt-20 h-screen min-h-[640px] overflow-hidden">
         <video
           ref={vRef}
           src={heroVideo.url}
